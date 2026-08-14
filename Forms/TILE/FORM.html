@@ -1,0 +1,1698 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A practical procurement request form with repeatable rooms and materials."
+    />
+    <title>Procurement Request</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-copy">
+        <p class="eyebrow">Procurement workspace</p>
+        <h1 id="app-title">Tile Procurement Request</h1>
+        <p class="header-description" id="app-description">
+          Capture payment, quote, room, material, and layout details in one request.
+        </p>
+      </div>
+      <div class="mode-badge" id="mode-badge" aria-live="polite">Local preview</div>
+    </header>
+
+    <main class="page-shell">
+      <form id="procurement-form" novalidate>
+        <section class="form-section" aria-labelledby="request-details-heading">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Step 1</p>
+              <h2 id="request-details-heading">Request details</h2>
+            </div>
+            <p><span class="required-mark">*</span> Required field</p>
+          </div>
+
+          <div class="field-grid field-grid--two">
+            <label class="field field--wide" data-procurement-field>
+              <span>Subject <span class="required-mark">*</span></span>
+              <input
+                type="text"
+                name="subject"
+                autocomplete="off"
+                placeholder="e.g. Lobby and restroom tile order"
+                required
+              />
+            </label>
+
+            <label class="field" data-procurement-field>
+              <span>Date needed to be paid <span class="required-mark">*</span></span>
+              <input type="date" name="date_needed_to_be_paid" required />
+            </label>
+
+            <label class="field">
+              <span>Project <span class="required-mark">*</span></span>
+              <select name="project" required>
+                <option value="">Select project</option>
+                <option value="1067 E Palm">1067 E Palm</option>
+                <option value="1097 E Mariposa">1097 E Mariposa</option>
+                <option value="1167 E Loma Alta">1167 E Loma Alta</option>
+                <option value="1192 Romney Dr">1192 Romney Dr</option>
+                <option value="1231 E Loma Alta">1231 E Loma Alta</option>
+                <option value="1245 E Loma Alta">1245 E Loma Alta</option>
+                <option value="1309 Rubio Vista">1309 Rubio Vista</option>
+                <option value="1401 Sugar Loaf Dr">1401 Sugar Loaf Dr</option>
+                <option value="1454 E Loma Alta">1454 E Loma Alta</option>
+                <option value="1539 Crest Drive">1539 Crest Drive</option>
+                <option value="1555 E Altadena">1555 E Altadena</option>
+                <option value="165 E Altadena Drive">165 E Altadena Drive</option>
+                <option value="167 E Altadena Drive">167 E Altadena Drive</option>
+                <option value="1946 Santa Rosa Ave">1946 Santa Rosa Ave</option>
+                <option value="2294 Winrock">2294 Winrock</option>
+                <option value="232 E Mariposa">232 E Mariposa</option>
+                <option value="2661 Glen Ave">2661 Glen Ave</option>
+                <option value="2815 Reposa Lane">2815 Reposa Lane</option>
+                <option value="2835 Maiden Lane">2835 Maiden Lane</option>
+                <option value="2904 Sagamore Way (ADU)">2904 Sagamore Way (ADU)</option>
+                <option value="3067 N Olive">3067 N Olive</option>
+                <option value="3278 Alicia Avenue">3278 Alicia Avenue</option>
+                <option value="33 W Las Flores">33 W Las Flores</option>
+                <option value="3815 Edgeview Drive">3815 Edgeview Drive</option>
+                <option value="41 W Las Flores">41 W Las Flores</option>
+                <option value="4178 Forest Hill Dr">4178 Forest Hill Dr</option>
+                <option value="78 W Las Flores">78 W Las Flores</option>
+                <option value="79 Marathon Road">79 Marathon Road</option>
+                <option value="85 W Las Flores">85 W Las Flores</option>
+                <option value="Round Top Drive">Round Top Drive</option>
+                <option value="1601 Crest Drive">1601 Crest Drive</option>
+                <option value="3619 Monterosa Drive">3619 Monterosa Drive</option>
+                <option value="2870 Northaven Ln Altadena">2870 Northaven Ln Altadena</option>
+              </select>
+            </label>
+
+            <label class="field" data-procurement-field>
+              <span>Vendor <span class="required-mark">*</span></span>
+              <input type="text" name="vendor" placeholder="Vendor or supplier" required />
+            </label>
+
+            <label class="field" data-procurement-field>
+              <span>Quote / Link <span class="required-mark">*</span></span>
+              <input
+                type="url"
+                name="quote_link"
+                placeholder="https://…"
+                inputmode="url"
+                required
+              />
+            </label>
+
+            <label class="field" data-procurement-field>
+              <span>Scope of work <span class="required-mark">*</span></span>
+              <select name="scope_of_work" required>
+                <option value="">Select scope</option>
+                <option value="Simple">Simple</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Complex">Complex</option>
+              </select>
+            </label>
+
+            <label class="field" data-procurement-field>
+              <span>Link to drawings</span>
+              <input
+                type="url"
+                name="drawings_link"
+                placeholder="https://…"
+                inputmode="url"
+              />
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section" aria-labelledby="request-type-heading">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Step 2</p>
+              <h2 id="request-type-heading">Request type</h2>
+            </div>
+          </div>
+
+          <label class="field request-type-field">
+            <span>Request type</span>
+            <select id="request-type" name="request_type">
+              <option value="tile">Tile Procurement Request</option>
+              <option value="light">Light Procurement Request</option>
+              <option value="countertop">Countertop Procurement Request</option>
+              <option value="door_hardware">Door Hardware Procurement Request</option>
+              <option value="cabinet_hardware">Cabinet Hardware Procurement Request</option>
+              <option value="shower_glass">Shower Glass Procurement Request</option>
+              <option value="miscellaneous">Miscellaneous Procurement Request</option>
+              <option value="site_super_request">Site Super Request</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="form-section" id="site-super-details" aria-labelledby="site-super-details-heading" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Site Super</p>
+              <h2 id="site-super-details-heading">Task details</h2>
+              <p>Submit a field task request for the selected project.</p>
+            </div>
+          </div>
+
+          <div class="field-grid field-grid--two">
+            <label class="field">
+              <span>Date Submitted <span class="required-mark">*</span></span>
+              <input type="date" data-site-super-field="date_submitted" readonly required />
+            </label>
+
+            <label class="field">
+              <span>Date Requested <span class="required-mark">*</span></span>
+              <input type="date" data-site-super-field="date_requested" required />
+            </label>
+
+            <label class="field field--wide">
+              <span>Task Name <span class="required-mark">*</span></span>
+              <input type="text" data-site-super-field="task_name" autocomplete="off" required />
+            </label>
+
+            <label class="field field--wide">
+              <span>Task Description <span class="required-mark">*</span></span>
+              <textarea data-site-super-field="task_description" rows="6" required></textarea>
+            </label>
+          </div>
+
+          <fieldset class="layout-fieldset urgency-fieldset">
+            <legend>Urgency <span class="required-mark">*</span></legend>
+            <p>Select the urgency level for this request.</p>
+            <div class="choice-row urgency-choice-row">
+              <label class="choice-pill urgency-pill urgency-pill--red">
+                <input type="radio" name="site_super_urgency" value="red" required />
+                <span class="urgency-flag" aria-hidden="true"></span>
+                <span class="sr-only">Red</span>
+              </label>
+              <label class="choice-pill urgency-pill urgency-pill--orange">
+                <input type="radio" name="site_super_urgency" value="orange" required />
+                <span class="urgency-flag" aria-hidden="true"></span>
+                <span class="sr-only">Orange</span>
+              </label>
+              <label class="choice-pill urgency-pill urgency-pill--yellow">
+                <input type="radio" name="site_super_urgency" value="yellow" required />
+                <span class="urgency-flag" aria-hidden="true"></span>
+                <span class="sr-only">Yellow</span>
+              </label>
+              <label class="choice-pill urgency-pill urgency-pill--green">
+                <input type="radio" name="site_super_urgency" value="green" required />
+                <span class="urgency-flag" aria-hidden="true"></span>
+                <span class="sr-only">Green</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="form-section" id="door-hardware-details" aria-labelledby="door-hardware-details-heading" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Door Hardware</p>
+              <h2 id="door-hardware-details-heading">Purchasing details</h2>
+              <p>Select how the door hardware is being priced, then add any front door notes.</p>
+            </div>
+          </div>
+
+          <fieldset class="layout-fieldset purchasing-method-fieldset">
+            <legend>Purchasing method</legend>
+            <div class="choice-row">
+              <label class="choice-pill">
+                <input type="radio" name="door_purchasing_method" value="quote_link" required />
+                <span>Quote Link</span>
+              </label>
+              <label class="choice-pill">
+                <input type="radio" name="door_purchasing_method" value="house_totals" required />
+                <span>Total for House</span>
+              </label>
+            </div>
+
+            <div class="door-method-panel" data-door-method-panel="quote_link" hidden>
+              <label class="field">
+                <span>Door Hardware Quote Link <span class="required-mark">*</span></span>
+                <input type="url" data-door-field="door_hardware_quote_link" placeholder="https://..." inputmode="url" />
+              </label>
+            </div>
+
+            <div class="door-method-panel" data-door-method-panel="house_totals" hidden>
+              <div class="field-grid field-grid--compact">
+                <label class="field">
+                  <span>Door Stops</span>
+                  <input type="number" data-house-total-field="door_stops" min="0" step="1" inputmode="numeric" />
+                </label>
+                <label class="field">
+                  <span>Hinge Stops</span>
+                  <input type="number" data-house-total-field="hinge_stops" min="0" step="1" inputmode="numeric" />
+                </label>
+                <label class="field">
+                  <span>Hinges</span>
+                  <input type="number" data-house-total-field="hinges" min="0" step="1" inputmode="numeric" />
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="layout-fieldset">
+            <legend>Front Door</legend>
+            <label class="field">
+              <span>Front Door Notes</span>
+              <textarea data-door-field="front_door_notes" rows="3" placeholder="Description, requirements, selections, or other notes"></textarea>
+            </label>
+          </fieldset>
+        </section>
+
+        <section class="form-section" id="cabinet-hardware-details" aria-labelledby="cabinet-hardware-details-heading" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Cabinet Hardware</p>
+              <h2 id="cabinet-hardware-details-heading">Input method</h2>
+              <p>Use the existing Quote / Link field, or enter room-by-room cabinet hardware details.</p>
+            </div>
+          </div>
+
+          <fieldset class="layout-fieldset">
+            <legend>Input method</legend>
+            <div class="choice-row">
+              <label class="choice-pill">
+                <input type="radio" name="cabinet_input_method" value="quote_link" required />
+                <span>Quote Link</span>
+              </label>
+              <label class="choice-pill">
+                <input type="radio" name="cabinet_input_method" value="hardware_details" required />
+                <span>Enter Hardware Details</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="form-section" id="shower-glass-details" aria-labelledby="shower-glass-details-heading" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Shower Glass</p>
+              <h2 id="shower-glass-details-heading">Lead time</h2>
+              <p>Add request-level timing information for the shower glass order.</p>
+            </div>
+          </div>
+
+          <label class="field request-type-field">
+            <span>Lead Time</span>
+            <input type="text" data-shower-field="lead_time" placeholder="e.g. 4 weeks, confirm with vendor" />
+          </label>
+        </section>
+
+        <section class="form-section" id="misc-details" aria-labelledby="misc-details-heading" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Miscellaneous</p>
+              <h2 id="misc-details-heading">Interior or Exterior</h2>
+              <p>Select where the miscellaneous procurement items belong.</p>
+            </div>
+          </div>
+
+          <fieldset class="layout-fieldset">
+            <legend>Interior or Exterior</legend>
+            <div class="choice-row">
+              <label class="choice-pill">
+                <input type="radio" name="misc_location_type" value="interior" required />
+                <span>Interior</span>
+              </label>
+              <label class="choice-pill">
+                <input type="radio" name="misc_location_type" value="exterior" required />
+                <span>Exterior</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="form-section" id="rooms-section" aria-labelledby="rooms-heading">
+          <div class="section-heading section-heading--action">
+            <div>
+              <p class="section-kicker">Step 3</p>
+              <h2 id="rooms-heading">Rooms &amp; materials</h2>
+              <p id="rooms-description">Add each room, then list its tile, trim, grout, and layout details.</p>
+            </div>
+            <button class="button button--primary" type="button" data-action="add-room">
+              <span aria-hidden="true">＋</span> Add room
+            </button>
+          </div>
+
+          <div id="rooms-container" class="rooms-container" aria-live="polite"></div>
+        </section>
+
+        <section class="form-section" id="misc-exterior-section" aria-labelledby="misc-exterior-heading" hidden>
+          <div class="section-heading section-heading--action">
+            <div>
+              <p class="section-kicker">Step 3</p>
+              <h2 id="misc-exterior-heading">Exterior items</h2>
+              <p>Add each exterior miscellaneous item.</p>
+            </div>
+            <button class="button button--primary" type="button" data-action="add-exterior-item">
+              <span aria-hidden="true">+</span> Add Exterior Item
+            </button>
+          </div>
+
+          <div id="misc-exterior-container" class="rooms-container" aria-live="polite"></div>
+        </section>
+
+        <section class="submit-panel" aria-labelledby="submit-heading">
+          <div>
+            <h2 id="submit-heading">Ready to submit?</h2>
+            <p id="submit-helper">
+              Local mode is active. Submitting will validate the request and log the JSON.
+            </p>
+          </div>
+          <div class="submit-actions">
+            <button class="button button--secondary" id="print-button" type="button">
+              Print PDF
+            </button>
+            <button class="button button--submit" id="submit-button" type="submit">
+              Submit request
+            </button>
+          </div>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </section>
+      </form>
+
+      <aside class="preview-panel" aria-labelledby="preview-heading">
+        <div class="preview-heading-row">
+          <div>
+            <p class="section-kicker">Live output</p>
+            <h2 id="preview-heading">JSON preview</h2>
+          </div>
+          <button class="button button--quiet button--small" id="copy-json" type="button">
+            Copy JSON
+          </button>
+        </div>
+        <p class="preview-description">Updates as the request changes.</p>
+        <pre id="json-preview" tabindex="0" aria-label="Live JSON payload preview"></pre>
+      </aside>
+    </main>
+
+    <template id="room-template">
+      <article class="room-card" data-room>
+        <div class="card-heading room-card__heading">
+          <div class="room-title-group">
+            <span class="number-chip" data-room-number>1</span>
+            <div>
+              <p class="card-eyebrow">Room</p>
+              <h3 data-room-title>Room 1</h3>
+            </div>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-room"
+            aria-label="Remove room"
+          >
+            Remove room
+          </button>
+        </div>
+
+        <label class="field room-name-field">
+          <span>Room name <span class="required-mark">*</span></span>
+          <input
+            type="text"
+            data-field="room_name"
+            placeholder="e.g. Main lobby"
+            required
+          />
+        </label>
+
+        <section class="material-section" aria-label="Tiles">
+          <div class="material-heading">
+            <div>
+              <h4>Tiles</h4>
+              <p>Quote information and installation layout for this room.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-tile">
+              <span aria-hidden="true">＋</span> Add tile
+            </button>
+          </div>
+          <div class="item-list" data-list="tiles"></div>
+        </section>
+
+        <div class="material-columns">
+          <section class="material-section" aria-label="Trim">
+            <div class="material-heading">
+              <div>
+                <h4>Trim</h4>
+                <p>Profiles and edge pieces.</p>
+              </div>
+              <button class="button button--secondary button--small" type="button" data-action="add-trim">
+                <span aria-hidden="true">＋</span> Add trim
+              </button>
+            </div>
+            <div class="item-list" data-list="trim"></div>
+          </section>
+
+          <section class="material-section" aria-label="Grout">
+            <div class="material-heading">
+              <div>
+                <h4>Grout</h4>
+                <p>Brand and order details.</p>
+              </div>
+              <button class="button button--secondary button--small" type="button" data-action="add-grout">
+                <span aria-hidden="true">＋</span> Add grout
+              </button>
+            </div>
+            <div class="item-list" data-list="grout"></div>
+          </section>
+        </div>
+      </article>
+    </template>
+
+    <template id="tile-template">
+      <article class="item-card tile-card" data-item="tile">
+        <div class="card-heading item-card__heading">
+          <div>
+            <p class="card-eyebrow">Tile</p>
+            <h5 data-item-title>Tile 1</h5>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove tile"
+          >
+            Remove
+          </button>
+        </div>
+
+        <div class="field-grid field-grid--tile">
+          <label class="field field--wide">
+            <span>Tile / item name on quote <span class="required-mark">*</span></span>
+            <input type="text" data-field="item_name" placeholder="Exact quote line item" required />
+          </label>
+          <label class="field">
+            <span>Sqft</span>
+            <input type="number" data-field="sqft" min="0" step="0.01" inputmode="decimal" />
+          </label>
+          <label class="field">
+            <span>Boxes ordered</span>
+            <input type="number" data-field="boxes_ordered" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>Nominal dimensions</span>
+            <input type="text" data-field="nominal_dimensions" placeholder='e.g. 12&quot; × 24&quot;' />
+          </label>
+          <label class="field">
+            <span>Finish</span>
+            <input type="text" data-field="finish" placeholder="Matte, polished…" />
+          </label>
+          <label class="field">
+            <span>Color</span>
+            <input type="text" data-field="color" />
+          </label>
+          <label class="field">
+            <span>Joint width</span>
+            <input type="text" data-field="joint_width" placeholder='e.g. 1/8&quot;' />
+          </label>
+          <label class="field field--wide">
+            <span>Notes</span>
+            <textarea data-field="notes" rows="2" placeholder="Procurement or product notes"></textarea>
+          </label>
+          <label class="field field--wide">
+            <span>Details</span>
+            <textarea data-field="details" rows="2" placeholder="Installation or quote details"></textarea>
+          </label>
+        </div>
+
+        <fieldset class="layout-fieldset">
+          <legend>Layout</legend>
+          <div class="field-grid field-grid--layout">
+            <label class="field">
+              <span>Origin Point</span>
+              <input type="text" data-layout-field="origin_point" placeholder="Starting reference" />
+            </label>
+            <label class="field">
+              <span>Direction</span>
+              <input type="text" data-layout-field="direction" placeholder="e.g. North to south" />
+            </label>
+            <label class="field">
+              <span>Transitions</span>
+              <input type="text" data-layout-field="transitions" placeholder="Doorways, material changes…" />
+            </label>
+            <label class="field">
+              <span>Area (Sqft)</span>
+              <input type="number" data-layout-field="area_sqft" min="0" step="0.01" inputmode="decimal" />
+            </label>
+          </div>
+        </fieldset>
+      </article>
+    </template>
+
+    <template id="trim-template">
+      <article class="item-card compact-item" data-item="trim">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Trim 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove trim"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--compact">
+          <label class="field">
+            <span>Trim <span class="required-mark">*</span></span>
+            <select data-field="type" required>
+              <option value="">Select trim</option>
+              <option value="Schluter">Schluter</option>
+              <option value="Jolly">Jolly</option>
+              <option value="Quarter round">Quarter round</option>
+              <option value="Miter">Miter</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field field--wide">
+            <span>Notes</span>
+            <input type="text" data-field="notes" placeholder="Size, finish, color, or quote line" />
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="grout-template">
+      <article class="item-card compact-item" data-item="grout">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Grout 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove grout"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--compact">
+          <label class="field">
+            <span>Brand <span class="required-mark">*</span></span>
+            <select data-field="brand" required>
+              <option value="">Select brand</option>
+              <option value="Mapei">Mapei</option>
+              <option value="Laticrete">Laticrete</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Color</span>
+            <input type="text" data-field="color" placeholder="Color name or number" />
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field field--wide">
+            <span>Notes</span>
+            <input type="text" data-field="notes" placeholder="Product line, unit size, or quote line" />
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="light-room-template">
+      <article class="room-card" data-room>
+        <div class="card-heading room-card__heading">
+          <div class="room-title-group">
+            <span class="number-chip" data-room-number>1</span>
+            <div>
+              <p class="card-eyebrow">Room</p>
+              <h3 data-room-title>Room 1</h3>
+            </div>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-room"
+            aria-label="Remove room"
+          >
+            Remove room
+          </button>
+        </div>
+
+        <label class="field room-name-field">
+          <span>Room name <span class="required-mark">*</span></span>
+          <input
+            type="text"
+            data-field="room_name"
+            placeholder="e.g. Dining room"
+            required
+          />
+        </label>
+
+        <section class="material-section" aria-label="Lights">
+          <div class="material-heading">
+            <div>
+              <h4>Lights</h4>
+              <p>Fixture, finish, fan, and bulb details for this room.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-light">
+              <span aria-hidden="true">+</span> Add light
+            </button>
+          </div>
+          <div class="item-list" data-list="lights"></div>
+        </section>
+      </article>
+    </template>
+
+    <template id="light-template">
+      <article class="item-card light-card" data-item="light">
+        <div class="card-heading item-card__heading">
+          <div>
+            <p class="card-eyebrow">Light</p>
+            <h5 data-item-title>Light 1</h5>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove light"
+          >
+            Remove
+          </button>
+        </div>
+
+        <div class="field-grid field-grid--light">
+          <label class="field">
+            <span>Type</span>
+            <select data-field="type">
+              <option value="">Select type</option>
+              <option value="Flush mount">Flush mount</option>
+              <option value="Semi-flush">Semi-flush</option>
+              <option value="Pendant">Pendant</option>
+              <option value="Fan">Fan</option>
+              <option value="Chandelier">Chandelier</option>
+              <option value="Sconce">Sconce</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <label class="field" data-conditional="other-type" hidden>
+            <span>Other light type</span>
+            <input type="text" data-field="other_type" />
+          </label>
+          <label class="field">
+            <span>Location type</span>
+            <select data-field="location_type">
+              <option value="">Select location</option>
+              <option value="Interior">Interior</option>
+              <option value="Exterior">Exterior</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field" data-conditional="fan-field" hidden>
+            <span>Rod Type</span>
+            <input type="text" data-field="rod_type" />
+          </label>
+          <label class="field" data-conditional="fan-field" hidden>
+            <span>Blade</span>
+            <input type="text" data-field="blade" />
+          </label>
+          <label class="field">
+            <span>Size</span>
+            <input type="text" data-field="size" />
+          </label>
+          <label class="field">
+            <span>Finish</span>
+            <input type="text" data-field="finish" />
+          </label>
+          <label class="field">
+            <span>Hanging Height</span>
+            <input type="text" data-field="hanging_height" />
+          </label>
+          <label class="field">
+            <span>Diameter</span>
+            <input type="text" data-field="diameter" />
+          </label>
+          <label class="field">
+            <span>Glass Finish</span>
+            <input type="text" data-field="glass_finish" />
+          </label>
+          <label class="field">
+            <span>Shade Detail</span>
+            <input type="text" data-field="shade_detail" />
+          </label>
+        </div>
+
+        <fieldset class="layout-fieldset">
+          <legend>Finishes</legend>
+          <div class="field-grid field-grid--light">
+            <label class="field">
+              <span>Body</span>
+              <input type="text" data-finish-field="body" />
+            </label>
+            <label class="field">
+              <span>Socket</span>
+              <input type="text" data-finish-field="socket" />
+            </label>
+            <label class="field">
+              <span>Cord / Chain</span>
+              <input type="text" data-finish-field="cord_chain" />
+            </label>
+            <label class="field">
+              <span>Accent Hardware</span>
+              <input type="text" data-finish-field="accent_hardware" />
+            </label>
+            <label class="field field--wide">
+              <span>Shade Detail</span>
+              <input type="text" data-finish-field="shade_detail" />
+            </label>
+          </div>
+        </fieldset>
+
+        <section class="material-section nested-material-section" aria-label="Bulbs">
+          <div class="material-heading">
+            <div>
+              <h4>Bulbs</h4>
+              <p>Dimming, kelvin, wattage, finish, and returnability.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-bulb">
+              <span aria-hidden="true">+</span> Add bulb
+            </button>
+          </div>
+          <div class="item-list" data-list="bulbs"></div>
+        </section>
+      </article>
+    </template>
+
+    <template id="bulb-template">
+      <article class="item-card compact-item" data-item="bulb">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Bulb 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove bulb"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--bulb">
+          <label class="field checkbox-field">
+            <input type="checkbox" data-field="dimmable" checked />
+            <span>Dimmable</span>
+          </label>
+          <label class="field">
+            <span>Kelvin</span>
+            <select data-field="kelvin">
+              <option value="">Select kelvin</option>
+              <option value="2700">2700</option>
+              <option value="3000">3000</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Watts</span>
+            <input type="text" data-field="watts" />
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>Finish</span>
+            <input type="text" data-field="finish" />
+          </label>
+          <label class="field">
+            <span>Shape</span>
+            <input type="text" data-field="shape" />
+          </label>
+          <label class="field checkbox-field">
+            <input type="checkbox" data-field="mixed_metals_flag" />
+            <span>Mixed Metals Flag</span>
+          </label>
+          <label class="field checkbox-field">
+            <input type="checkbox" data-field="non_returnable" />
+            <span>Non-returnable</span>
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="countertop-room-template">
+      <article class="room-card" data-room>
+        <div class="card-heading room-card__heading">
+          <div class="room-title-group">
+            <span class="number-chip" data-room-number>1</span>
+            <div>
+              <p class="card-eyebrow">Room</p>
+              <h3 data-room-title>Room 1</h3>
+            </div>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-room"
+            aria-label="Remove room"
+          >
+            Remove room
+          </button>
+        </div>
+
+        <label class="field room-name-field">
+          <span>Room name <span class="required-mark">*</span></span>
+          <input
+            type="text"
+            data-field="room_name"
+            placeholder="e.g. Kitchen"
+            required
+          />
+        </label>
+
+        <section class="material-section" aria-label="Slabs">
+          <div class="material-heading">
+            <div>
+              <h4>Slabs</h4>
+              <p>Material, measurements, edge details, design, and fixture links.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-slab">
+              <span aria-hidden="true">+</span> Add slab
+            </button>
+          </div>
+          <div class="item-list" data-list="slabs"></div>
+        </section>
+      </article>
+    </template>
+
+    <template id="slab-template">
+      <article class="item-card slab-card" data-item="slab">
+        <div class="card-heading item-card__heading">
+          <div>
+            <p class="card-eyebrow">Slab</p>
+            <h5 data-item-title>Slab 1</h5>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove slab"
+          >
+            Remove
+          </button>
+        </div>
+
+        <div class="field-grid field-grid--countertop">
+          <label class="field">
+            <span>Material Type</span>
+            <select data-field="material_type">
+              <option value="">Select material type</option>
+              <option value="Soapstone">Soapstone</option>
+              <option value="Limestone">Limestone</option>
+              <option value="Quartz">Quartz</option>
+              <option value="Quartzite">Quartzite</option>
+              <option value="Marble">Marble</option>
+              <option value="Granite">Granite</option>
+              <option value="Porcelain">Porcelain</option>
+              <option value="Corian">Corian</option>
+              <option value="Slate">Slate</option>
+              <option value="Travertine">Travertine</option>
+              <option value="Concrete">Concrete</option>
+              <option value="Butcher Block">Butcher Block</option>
+              <option value="Stainless Steel">Stainless Steel</option>
+              <option value="Terrazzo">Terrazzo</option>
+              <option value="Egyptian Alabaster">Egyptian Alabaster</option>
+            </select>
+          </label>
+          <label class="field field--wide">
+            <span>Measurements of Slabs</span>
+            <textarea data-field="slab_measurements" rows="2" placeholder="e.g. 126 in x 63 in x 2 cm"></textarea>
+          </label>
+          <label class="field">
+            <span>Number of Slabs</span>
+            <input type="number" data-field="number_of_slabs" min="0" step="1" inputmode="numeric" />
+          </label>
+        </div>
+
+        <fieldset class="layout-fieldset image-fieldset" data-image-group="edge_details">
+          <legend>Edge Details</legend>
+          <div class="field-grid field-grid--countertop">
+            <label class="field field--wide">
+              <span>Edge details text</span>
+              <textarea data-edge-field="description" rows="2"></textarea>
+            </label>
+            <label class="field">
+              <span>Edge details image upload</span>
+              <input type="file" accept="image/*" data-image-input="edge_details" />
+            </label>
+            <div class="image-preview-box">
+              <span data-image-name>No image selected.</span>
+              <img data-image-preview alt="Selected edge details image preview" hidden />
+              <button class="button button--quiet button--small" type="button" data-action="clear-image">
+                Remove Image
+              </button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="layout-fieldset image-fieldset" data-image-group="perimeter_island_design">
+          <legend>Perimeter / Island Design</legend>
+          <div class="field-grid field-grid--countertop">
+            <label class="field field--wide">
+              <span>Design description</span>
+              <textarea data-design-field="description" rows="2"></textarea>
+            </label>
+            <label class="field">
+              <span>Design image upload</span>
+              <input type="file" accept="image/*" data-image-input="perimeter_island_design" />
+            </label>
+            <div class="image-preview-box">
+              <span data-image-name>No image selected.</span>
+              <img data-image-preview alt="Selected design image preview" hidden />
+              <button class="button button--quiet button--small" type="button" data-action="clear-image">
+                Remove Image
+              </button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="layout-fieldset image-fieldset" data-image-group="backsplash">
+          <legend>Backsplash</legend>
+          <div class="field-grid field-grid--countertop">
+            <label class="field field--wide">
+              <span>Backsplash description</span>
+              <textarea data-backsplash-field="description" rows="2"></textarea>
+            </label>
+            <label class="field">
+              <span>Backsplash image upload</span>
+              <input type="file" accept="image/*" data-image-input="backsplash" />
+            </label>
+            <div class="image-preview-box">
+              <span data-image-name>No image selected.</span>
+              <img data-image-preview alt="Selected backsplash image preview" hidden />
+              <button class="button button--quiet button--small" type="button" data-action="clear-image">
+                Remove Image
+              </button>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="material-columns countertop-group-columns">
+          <fieldset class="layout-fieldset">
+            <legend>Plumbing Hardware</legend>
+            <div class="field-grid field-grid--compact">
+              <label class="field">
+                <span>Link to Plumbing Hardware</span>
+                <input type="url" data-plumbing-field="url" placeholder="https://..." inputmode="url" />
+              </label>
+              <label class="field">
+                <span>Quantity</span>
+                <input type="number" data-plumbing-field="quantity" min="0" step="1" inputmode="numeric" />
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="layout-fieldset">
+            <legend>Sinks</legend>
+            <div class="field-grid field-grid--compact">
+              <label class="field">
+                <span>Link to Sinks</span>
+                <input type="url" data-sinks-field="url" placeholder="https://..." inputmode="url" />
+              </label>
+              <label class="field">
+                <span>Quantity</span>
+                <input type="number" data-sinks-field="quantity" min="0" step="1" inputmode="numeric" />
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="layout-fieldset">
+            <legend>Tub</legend>
+            <div class="field-grid field-grid--compact">
+              <label class="field">
+                <span>Link to Tub</span>
+                <input type="url" data-tub-field="url" placeholder="https://..." inputmode="url" />
+              </label>
+              <label class="field">
+                <span>Quantity</span>
+                <input type="number" data-tub-field="quantity" min="0" step="1" inputmode="numeric" />
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </article>
+    </template>
+
+    <template id="door-room-template">
+      <article class="room-card" data-room>
+        <div class="card-heading room-card__heading">
+          <div class="room-title-group">
+            <span class="number-chip" data-room-number>1</span>
+            <div>
+              <p class="card-eyebrow">Room</p>
+              <h3 data-room-title>Room 1</h3>
+            </div>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-room"
+            aria-label="Remove room"
+          >
+            Remove room
+          </button>
+        </div>
+
+        <label class="field room-name-field">
+          <span>Room name <span class="required-mark">*</span></span>
+          <input
+            type="text"
+            data-field="room_name"
+            placeholder="e.g. Primary bedroom"
+            required
+          />
+        </label>
+
+        <section class="material-section" aria-label="Doors">
+          <div class="material-heading">
+            <div>
+              <h4>Doors</h4>
+              <p>Door location, backset, plate, hand, function, keying, and hardware types.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-door">
+              <span aria-hidden="true">+</span> Add door
+            </button>
+          </div>
+          <div class="item-list" data-list="doors"></div>
+        </section>
+      </article>
+    </template>
+
+    <template id="door-template">
+      <article class="item-card door-card" data-item="door">
+        <div class="card-heading item-card__heading">
+          <div>
+            <p class="card-eyebrow">Door</p>
+            <h5 data-item-title>Door 1</h5>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove door"
+          >
+            Remove
+          </button>
+        </div>
+
+        <div class="field-grid field-grid--door">
+          <label class="field field--wide">
+            <span>Door Name / Location</span>
+            <input type="text" data-field="door_name" placeholder="e.g. Entry Door" />
+          </label>
+          <label class="field">
+            <span>Backset Option</span>
+            <input type="text" data-field="backset_option" />
+          </label>
+          <label class="field">
+            <span>Back Plate Style</span>
+            <input type="text" data-field="back_plate_style" />
+          </label>
+          <label class="field">
+            <span>Door Thickness</span>
+            <input type="text" data-field="door_thickness" placeholder="e.g. 1 3/4 in" />
+          </label>
+          <label class="field">
+            <span>R or L Hand</span>
+            <select data-field="door_hand">
+              <option value="">Select door hand</option>
+              <option value="right">Right Hand</option>
+              <option value="left">Left Hand</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Function</span>
+            <select data-field="function">
+              <option value="">Select function</option>
+              <option value="passage">Passage</option>
+              <option value="privacy">Privacy</option>
+              <option value="keyed_entry">Keyed / Entry</option>
+            </select>
+          </label>
+          <label class="field field--wide">
+            <span>Key Instructions</span>
+            <textarea data-field="key_instructions" rows="3" placeholder="Keying requirements, keyed-alike groups, master-key instructions, or other lock notes"></textarea>
+          </label>
+        </div>
+
+        <fieldset class="layout-fieldset">
+          <legend>Type</legend>
+          <div class="type-config-list">
+            <div class="type-config-row" data-type-config-row="knob">
+              <label class="checkbox-field checkbox-field--compact">
+                <input type="checkbox" data-type-value="knob" />
+                <span>Knob</span>
+              </label>
+              <div class="type-config-fields" hidden>
+                <label class="field">
+                  <span>Knob Name</span>
+                  <input type="text" data-type-name="knob" />
+                </label>
+                <label class="field">
+                  <span>Knob Finish</span>
+                  <input type="text" data-type-finish="knob" />
+                </label>
+                <label class="field">
+                  <span>Knob Quantity</span>
+                  <input type="number" data-type-quantity="knob" min="0" step="1" inputmode="numeric" />
+                </label>
+              </div>
+            </div>
+
+            <div class="type-config-row" data-type-config-row="lever">
+              <label class="checkbox-field checkbox-field--compact">
+                <input type="checkbox" data-type-value="lever" />
+                <span>Lever</span>
+              </label>
+              <div class="type-config-fields" hidden>
+                <label class="field">
+                  <span>Lever Name</span>
+                  <input type="text" data-type-name="lever" />
+                </label>
+                <label class="field">
+                  <span>Lever Finish</span>
+                  <input type="text" data-type-finish="lever" />
+                </label>
+                <label class="field">
+                  <span>Lever Quantity</span>
+                  <input type="number" data-type-quantity="lever" min="0" step="1" inputmode="numeric" />
+                </label>
+              </div>
+            </div>
+
+            <div class="type-config-row" data-type-config-row="pocket">
+              <label class="checkbox-field checkbox-field--compact">
+                <input type="checkbox" data-type-value="pocket" />
+                <span>Pocket</span>
+              </label>
+              <div class="type-config-fields" hidden>
+                <label class="field">
+                  <span>Pocket Name</span>
+                  <input type="text" data-type-name="pocket" />
+                </label>
+                <label class="field">
+                  <span>Pocket Finish</span>
+                  <input type="text" data-type-finish="pocket" />
+                </label>
+                <label class="field">
+                  <span>Pocket Quantity</span>
+                  <input type="number" data-type-quantity="pocket" min="0" step="1" inputmode="numeric" />
+                </label>
+              </div>
+            </div>
+
+            <div class="type-config-row" data-type-config-row="handleset">
+              <label class="checkbox-field checkbox-field--compact">
+                <input type="checkbox" data-type-value="handleset" />
+                <span>Handleset</span>
+              </label>
+              <div class="type-config-fields" hidden>
+                <label class="field">
+                  <span>Handleset Name</span>
+                  <input type="text" data-type-name="handleset" />
+                </label>
+                <label class="field">
+                  <span>Handleset Finish</span>
+                  <input type="text" data-type-finish="handleset" />
+                </label>
+                <label class="field">
+                  <span>Handleset Quantity</span>
+                  <input type="number" data-type-quantity="handleset" min="0" step="1" inputmode="numeric" />
+                </label>
+              </div>
+            </div>
+
+            <div class="type-config-row" data-type-config-row="deadbolt">
+              <label class="checkbox-field checkbox-field--compact">
+                <input type="checkbox" data-type-value="deadbolt" />
+                <span>Deadbolt</span>
+              </label>
+              <div class="type-config-fields" hidden>
+                <label class="field">
+                  <span>Deadbolt Name</span>
+                  <input type="text" data-type-name="deadbolt" />
+                </label>
+                <label class="field">
+                  <span>Deadbolt Finish</span>
+                  <input type="text" data-type-finish="deadbolt" />
+                </label>
+                <label class="field">
+                  <span>Deadbolt Quantity</span>
+                  <input type="number" data-type-quantity="deadbolt" min="0" step="1" inputmode="numeric" />
+                </label>
+              </div>
+            </div>
+
+            <div class="type-config-row" data-type-config-row="ballcatch">
+              <label class="checkbox-field checkbox-field--compact">
+                <input type="checkbox" data-type-value="ballcatch" />
+                <span>Ballcatch</span>
+              </label>
+              <div class="type-config-fields" hidden>
+                <label class="field">
+                  <span>Ballcatch Name</span>
+                  <input type="text" data-type-name="ballcatch" />
+                </label>
+                <label class="field">
+                  <span>Ballcatch Finish</span>
+                  <input type="text" data-type-finish="ballcatch" />
+                </label>
+                <label class="field">
+                  <span>Ballcatch Quantity</span>
+                  <input type="number" data-type-quantity="ballcatch" min="0" step="1" inputmode="numeric" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </article>
+    </template>
+
+    <template id="cabinet-room-template">
+      <article class="room-card" data-room>
+        <div class="card-heading room-card__heading">
+          <div class="room-title-group">
+            <span class="number-chip" data-room-number>1</span>
+            <div>
+              <p class="card-eyebrow">Room</p>
+              <h3 data-room-title>Room 1</h3>
+            </div>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-room"
+            aria-label="Remove room"
+          >
+            Remove room
+          </button>
+        </div>
+
+        <label class="field room-name-field">
+          <span>Room name <span class="required-mark">*</span></span>
+          <input
+            type="text"
+            data-field="room_name"
+            placeholder="e.g. Kitchen"
+            required
+          />
+        </label>
+
+        <section class="material-section" aria-label="Knobs">
+          <div class="material-heading">
+            <div>
+              <h4>Knobs</h4>
+              <p>Name, quantity, length, and finish.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-knob">
+              <span aria-hidden="true">+</span> Add Knob
+            </button>
+          </div>
+          <div class="item-list" data-list="knobs"></div>
+        </section>
+
+        <section class="material-section" aria-label="Pulls">
+          <div class="material-heading">
+            <div>
+              <h4>Pulls</h4>
+              <p>Name, quantity, length, and finish.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-pull">
+              <span aria-hidden="true">+</span> Add Pull
+            </button>
+          </div>
+          <div class="item-list" data-list="pulls"></div>
+        </section>
+
+        <section class="material-section" aria-label="Ball Catches">
+          <div class="material-heading">
+            <div>
+              <h4>Ball Catches</h4>
+              <p>Name, quantity, length, and finish.</p>
+            </div>
+            <button class="button button--secondary button--small" type="button" data-action="add-ball-catch">
+              <span aria-hidden="true">+</span> Add Ball Catch
+            </button>
+          </div>
+          <div class="item-list" data-list="ball-catches"></div>
+        </section>
+      </article>
+    </template>
+
+    <template id="cabinet-knob-template">
+      <article class="item-card compact-item" data-item="knob">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Knob 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove knob"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--compact">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" data-field="name" />
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>Length</span>
+            <input type="text" data-field="length" />
+          </label>
+          <label class="field">
+            <span>Finish</span>
+            <input type="text" data-field="finish" />
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="cabinet-pull-template">
+      <article class="item-card compact-item" data-item="pull">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Pull 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove pull"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--compact">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" data-field="name" />
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>Length</span>
+            <input type="text" data-field="length" />
+          </label>
+          <label class="field">
+            <span>Finish</span>
+            <input type="text" data-field="finish" />
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="cabinet-ball-catch-template">
+      <article class="item-card compact-item" data-item="ball-catch">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Ball Catch 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove ball catch"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--compact">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" data-field="name" />
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>Length</span>
+            <input type="text" data-field="length" />
+          </label>
+          <label class="field">
+            <span>Finish</span>
+            <input type="text" data-field="finish" />
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="shower-room-template">
+      <article class="room-card" data-room>
+        <div class="card-heading room-card__heading">
+          <div class="room-title-group">
+            <span class="number-chip" data-room-number>1</span>
+            <div>
+              <p class="card-eyebrow">Room</p>
+              <h3 data-room-title>Room 1</h3>
+            </div>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-room"
+            aria-label="Remove room"
+          >
+            Remove room
+          </button>
+        </div>
+
+        <div class="room-name-field field-grid field-grid--two">
+          <label class="field">
+            <span>Room Name <span class="required-mark">*</span></span>
+            <input
+              type="text"
+              data-field="room_name"
+              placeholder="e.g. Primary Bathroom"
+              required
+            />
+          </label>
+          <label class="field">
+            <span>Framing</span>
+            <input type="text" data-field="framing" placeholder="Frameless, semi-frameless, channel-mounted..." />
+          </label>
+          <label class="field field--wide">
+            <span>Enclosure Layout</span>
+            <textarea data-field="enclosure_layout" rows="3" placeholder="Panel arrangement, openings, walls, and installation notes"></textarea>
+          </label>
+        </div>
+
+        <section class="material-section" aria-label="Door Configuration">
+          <fieldset class="layout-fieldset">
+            <legend>Door Configuration</legend>
+            <div class="field-grid field-grid--compact">
+              <label class="field">
+                <span>Door Type</span>
+                <select data-door-config-field="door_type">
+                  <option value="">Select door type</option>
+                  <option value="hinged_pivot">Hinged / Pivot</option>
+                  <option value="sliding">Sliding</option>
+                  <option value="fixed_panel_only">Fixed Panel Only</option>
+                  <option value="walk_in_no_door">Walk-In / No Door</option>
+                </select>
+              </label>
+              <label class="field" data-conditional="shower-hinged-field" hidden>
+                <span data-shower-swing-label>Swing Direction</span>
+                <select data-door-config-field="swing_direction">
+                  <option value="">Select swing direction</option>
+                  <option value="in">In</option>
+                  <option value="out">Out</option>
+                </select>
+              </label>
+              <label class="field" data-conditional="shower-hinged-field" hidden>
+                <span data-shower-hinge-label>Hinge Side</span>
+                <select data-door-config-field="hinge_side">
+                  <option value="">Select hinge side</option>
+                  <option value="left">Left</option>
+                  <option value="right">Right</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="material-section" aria-label="Glass Specifications">
+          <fieldset class="layout-fieldset">
+            <legend>Glass Specifications</legend>
+            <div class="field-grid field-grid--compact">
+              <label class="field">
+                <span>Glass Thickness</span>
+                <input type="text" data-glass-field="thickness" placeholder="e.g. 3/8 in, 10 mm" />
+              </label>
+              <label class="field">
+                <span>Glass Type</span>
+                <select data-glass-field="glass_type">
+                  <option value="">Select glass type</option>
+                  <option value="clear_original">Clear Original</option>
+                  <option value="starfire">Starfire</option>
+                  <option value="tinted">Tinted</option>
+                  <option value="frosted">Frosted</option>
+                  <option value="reeded">Reeded</option>
+                  <option value="fluted">Fluted</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label class="field" data-conditional="shower-other-glass" hidden>
+                <span>Other Glass Type</span>
+                <input type="text" data-glass-field="other_glass_type" />
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="material-section" aria-label="Hardware">
+          <fieldset class="layout-fieldset">
+            <legend>Hardware</legend>
+            <div class="field-grid field-grid--compact">
+              <label class="field">
+                <span>Hardware Finish</span>
+                <input type="text" data-hardware-field="finish" />
+              </label>
+              <label class="field">
+                <span>Hardware Style</span>
+                <textarea data-hardware-field="style" rows="2"></textarea>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="material-section" aria-label="Shower Glass Notes">
+          <fieldset class="layout-fieldset">
+            <legend>Notes</legend>
+            <label class="field">
+              <span>Comments</span>
+              <textarea data-field="notes" rows="3" placeholder="Additional comments, vendor notes, field conditions, or install details"></textarea>
+            </label>
+          </fieldset>
+        </section>
+      </article>
+    </template>
+
+    <template id="misc-room-template">
+      <article class="room-card" data-room>
+        <div class="card-heading room-card__heading">
+          <div class="room-title-group">
+            <span class="number-chip" data-room-number>1</span>
+            <div>
+              <p class="card-eyebrow">Room</p>
+              <h3 data-room-title>Room 1</h3>
+            </div>
+          </div>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-room"
+            aria-label="Remove room"
+          >
+            Remove room
+          </button>
+        </div>
+
+        <div class="room-name-field field-grid field-grid--compact">
+          <label class="field">
+            <span>Room name</span>
+            <input type="text" data-field="room_name" />
+          </label>
+        </div>
+
+        <section class="item-section">
+          <div class="subsection-heading">
+            <div>
+              <h4>Items</h4>
+              <p>Add each miscellaneous item for this room.</p>
+            </div>
+            <button class="button button--secondary" type="button" data-action="add-misc-item">
+              <span aria-hidden="true">+</span> Add Item
+            </button>
+          </div>
+          <div class="item-list" data-list="misc-items"></div>
+        </section>
+      </article>
+    </template>
+
+    <template id="misc-item-template">
+      <article class="item-card compact-item" data-item="misc-item">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Item 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove item"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--compact">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" data-field="name" />
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>Supplier</span>
+            <input type="text" data-field="supplier" />
+          </label>
+          <label class="field field--wide">
+            <span>Details</span>
+            <textarea data-field="details" rows="3"></textarea>
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="misc-exterior-item-template">
+      <article class="item-card compact-item" data-item="exterior-item">
+        <div class="card-heading item-card__heading">
+          <h5 data-item-title>Exterior Item 1</h5>
+          <button
+            class="icon-button icon-button--danger"
+            type="button"
+            data-action="remove-item"
+            aria-label="Remove exterior item"
+          >
+            Remove
+          </button>
+        </div>
+        <div class="field-grid field-grid--compact">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" data-field="name" />
+          </label>
+          <label class="field">
+            <span>Quantity</span>
+            <input type="number" data-field="quantity" min="0" step="1" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>Supplier</span>
+            <input type="text" data-field="supplier" />
+          </label>
+          <label class="field field--wide">
+            <span>Details</span>
+            <textarea data-field="details" rows="3"></textarea>
+          </label>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>
